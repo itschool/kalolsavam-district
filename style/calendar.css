@@ -1,0 +1,24 @@
+@charset "utf-8";
+/* CSS Document */
+#calendarDiv{position:fixed !important; width:205px;border:1px solid #CCCCCC;padding:1px;background-color: #FEFEFE;	font-family:arial;font-size:10px;padding-bottom:20px;visibility:hidden;z-index:10000 !important;}
+#calendarDiv span,#calendarDiv img{float:left;}
+#calendarDiv .selectBox,#calendarDiv .selectBoxOver{line-height:12px; padding:1px; cursor:pointer; padding-left:2px;}
+#calendarDiv .selectBoxTime,#calendarDiv .selectBoxTimeOver{line-height:12px; padding:1px; cursor:pointer;	padding-left:2px;}
+#calendarDiv td{padding:3px; margin:0px; font-size:10px;}
+#calendarDiv .selectBox{border:1px solid #E2EBED; color: #333333; position:relative;}
+#calendarDiv .selectBoxOver{border:1px solid #333333; background-color: #CCCCCC; color: #333333;position:relative;}
+#calendarDiv .selectBoxTime{border:1px solid #317082; color: #317082; position:relative;}
+#calendarDiv .selectBoxTimeOver{border:1px solid #216072; color: #216072; position:relative;}
+#calendarDiv .topBar{height:16px; padding:2px; background-color: #CCCCCC;}
+#calendarDiv .activeDay{/* Active day in the calendar */color:#FF0000;}
+#calendarDiv .todaysDate{height:17px; line-height:17px; padding:2px; background-color: #E6E6E6; text-align:center;position:absolute; bottom:0px;width:201px;}
+#calendarDiv .todaysDate div{float:left;}
+#calendarDiv .timeBar{ height:17px; line-height:17px; background-color: #CCCCCC; width:72px; color:#333333; position:absolute;	right:0px;}
+#calendarDiv .timeBar div{float:left;margin-right:1px;}
+#calendarDiv .monthYearPicker{background-color: #F2F2F2; border:1px solid #AAAAAA;position:absolute; color: #333333;left:0px;	top:15px; z-index:10000; display:none;}
+#calendarDiv #monthSelect{ width:70px; }
+#calendarDiv .monthYearPicker div{ float:none; clear:both;	padding:1px;margin:1px;	cursor:pointer;}
+#calendarDiv .monthYearActive{ background-color:#CCCCCC;color: #333333;}
+#calendarDiv td{ text-align:right; cursor:pointer;}
+#calendarDiv .topBar img{ cursor:pointer; }
+#calendarDiv .topBar div{ float:left; margin-right:1px;}

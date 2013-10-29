@@ -1,0 +1,10 @@
+nbproject
+photos/*
+!photos/index.html
+
+### vim ###
+.*.s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+*~
