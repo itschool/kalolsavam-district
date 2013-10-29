@@ -3,7 +3,7 @@
 $dbhost = 'localhost';
 $dbuser = 'root';
 $dbpass ='itschool';
-$dbname = 'kalolsavam_2012';
+$dbname = 'kalolsavam_2013';
 
 $conn = mysql_connect ($dbhost, $dbuser, $dbpass) or die ('I cannot connect to the database because: ' . mysql_error());
 mysql_select_db ($dbname);
@@ -35,17 +35,17 @@ while($result	=	mysql_fetch_array($query1)){
 	$name		=	$result['participant_name'];
 	$class		=	$result['class'];
 	$gender		=	$result['gender'];
-	
+
 	$myFile = "student/".$schoolCode."_".$admno.".txt";
-	
+
 	$fh = fopen($myFile, 'w') or die("can't open file");
-	
+
 	$stringData =	$name."\n".$class."\n".$gender."\n";
 
 	fwrite($fh, $stringData);
-	fclose($fh); 
-	
-	
+	fclose($fh);
+
+
 	echo "<br>".$i." - file write sucessfull : <br> Name : $myFile <br>";
 }
 ?>

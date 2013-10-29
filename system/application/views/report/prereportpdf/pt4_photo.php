@@ -71,11 +71,11 @@ if (count($fest_master_details) > 0)
 		$file_path		=	base_url(false).'uploads/district/thumb_'.$logo;
 	}
 	else {
-	
+
 		$file_path="";
 	}
 }
-					
+
 ?>
 
 <page backtop="0mm" backbottom="0mm" >
@@ -87,7 +87,7 @@ for($i = 0; $i < count($participant_details); ){
 	<tr>
     	<td width="366" height="515" valign="top">
         	<?php if (@$participant_details[$i]['participant_id']){
-			
+
 			$reg	=	@$participant_details[$i]['admn_no'];
 			?>
         <table border="1" width="366" >
@@ -96,48 +96,48 @@ for($i = 0; $i < count($participant_details); ){
               	  if($file_path!=""){
 				  ?>
                  <td rowspan="2"> <img src="<?php echo $file_path?>" height="40"  /></td>
-                 <?php } 
+                 <?php }
 				 else {?>
                   <td width="74" rowspan="2">&nbsp; </td>
             <?php } ?>
-                  <td width="243"  class="style56" align="right">Kerala School Kalolsavam 2012 - 2013</td>
+                  <td width="243"  class="style56" align="right">Kerala School Kalolsavam 2013 - 2014</td>
               </tr>
                 <tr>
-                   
+
                     <td align="right" class="stylehy"><?php echo $title.'<br> '.$venue; ?><br></td>
                 </tr>
-            
+
                 <tr bgcolor="#CCCCCC">
                     <td bgcolor="#E5E5E5" colspan="2" align="center" class="style2" style="border-bottom:1px #000000;border-top:1px #000000; border-right:0px #000000; padding:2px;">Participant's Card</td>
                 </tr>
                 <tr>
-                    <td align="center">Reg. No</td> 
+                    <td align="center">Reg. No</td>
                     <td rowspan="2" style="border-bottom:1px #000000; border-left:1px #000000; padding:1px;">
                     <table>
                 	<tr>
-                	<td>  
-                    
+                	<td>
+
                     <span class="style2">&nbsp;<?php echo wordwrap($participant_details[$i]['participant_name'],30,'<br/>'); ?></span><br>
                         &nbsp;<?php  echo wordwrap($participant_details[$i]['school_code'].'  '.@$participant_details[$i]['school_name'],30,'<br/>'); ?><br>
                         &nbsp;<?php echo 'Class  :'.$participant_details[$i]['class']."<br>&nbsp;".$participant_details[$i]['sub_district_name']." - Sub-District"; ?>
                     </td>
-                    
+
                     <td align="left">&nbsp;&nbsp;
                  <?
 				   //echo "<br /><br />-->".var_dump($Photo['pic'][$reg]);
                     if(@$Photo['pic'][$reg])
 					{
 					   @$pic_path	=	@$Photo['pic'][$reg];
-					   echo "<img src='".@$pic_path."'width='80' height='80'>";				 
+					   echo "<img src='".@$pic_path."'width='80' height='80'>";
 					}
 					else
 					{
 						//$document_root 	=	image_url(false)."photos";
 						@$pic_path	=	image_url()."/img_user_nophoto.jpg";
-					    echo "<img src='".@$pic_path."'width='80' height='80'>";								
+					    echo "<img src='".@$pic_path."'width='80' height='80'>";
 					}
 					?>
-                 
+
                  </td>
                  </tr>
                  </table>
@@ -145,7 +145,7 @@ for($i = 0; $i < count($participant_details); ){
               </tr>
                 <tr>
                     <td  width="51"class="style1" valign="top" style="border-bottom:1px #000000; border-right:0px #000000; padding:1px;" align="center"><?php echo $participant_details[$i]['participant_id']; ?></td>
-     
+
               </tr>
                 <?php
 					$item_details		=	$this->prereport_model->get_participant_item_details($participant_details[$i]['participant_id']);
@@ -155,11 +155,11 @@ for($i = 0; $i < count($participant_details); ){
 					{
 						if($l==$cnt)
 							$style="style23";
-						else 
+						else
 							$style="style9";
 							$dat_itme=datetophpmodel($item['start_time']);
 							$timer=explode(" ",$item['start_time']);
-						
+
 				?>
                	<tr>
                     <td colspan="2" class="style55" valign="top" align="left">&nbsp;<?php echo $item['item_code'].'&nbsp;&nbsp;&nbsp;'.$item['item_name']; ?></td>
@@ -179,7 +179,7 @@ for($i = 0; $i < count($participant_details); ){
          <?php $i++;?>
          <td width="448" height="515" valign="top">
          	<?php if (@$participant_details[$i]['participant_id']){
-			
+
 			$reg	=	@$participant_details[$i]['admn_no'];
 			?>
         	<table border="1" width="419" >
@@ -187,34 +187,34 @@ for($i = 0; $i < count($participant_details); ){
                 <?php
               	  if($file_path!=""){
 				  ?>
-                  
+
                  <td rowspan="2"> <img src="<?php echo $file_path?>" height="40"></td>
-                 <?php 
+                 <?php
 				 }
 				 else {
 				 ?>
                 <td width="82" rowspan="2">&nbsp;</td>
-                 
+
             <?php
                  }
                  ?>
-                    <td width="263" class="style56" align="right">Kerala School Kalolsavam 2012 - 2013</td>
+                    <td width="263" class="style56" align="right">Kerala School Kalolsavam 2013 - 2014</td>
               </tr>
                 <tr>
-                   
+
                     <td align="right" class="stylehy"><?php echo $title.'<br> '.$venue; ?><br></td>
                 </tr>
-            
+
                 <tr bgcolor="#CCCCCC">
                     <td bgcolor="#E5E5E5" colspan="2" align="center" class="style2" style="border-bottom:1px #000000;border-top:1px #000000; border-right:0px #000000; padding:2px;">Participant's Card</td>
                 </tr>
-                
+
                 <tr>
                     <td align="center">Reg. No</td>
                     <td rowspan="2" style="border-bottom:1px #000000; border-left:1.5px #000000; padding:2px;">
                      <table>
                 	<tr>
-                	<td> 
+                	<td>
                     <span class="style2"><?php echo wordwrap($participant_details[$i]['participant_name'],30,'<br/>'); ?></span><br>
                         &nbsp;<?php  echo wordwrap($participant_details[$i]['school_code'].'  '.@$participant_details[$i]['school_name'],30,'<br/>'); ?><br>
                         &nbsp;<?php echo 'Class  :'.$participant_details[$i]['class']."<br>&nbsp;".$participant_details[$i]['sub_district_name']." - Sub-District"; ?>
@@ -225,38 +225,38 @@ for($i = 0; $i < count($participant_details); ){
                     if(@$Photo['pic'][$reg])
 					{
 					   @$pic_path	=	@$Photo['pic'][$reg];
-					   echo "<img src='".@$pic_path."'width='80' height='80'>";				 
+					   echo "<img src='".@$pic_path."'width='80' height='80'>";
 					}
 					else
 					{
 						//$document_root 	=	image_url(false)."photos";
 						@$pic_path	=	image_url()."/img_user_nophoto.jpg";
-					    echo "<img src='".@$pic_path."'width='80' height='80'>";								
+					    echo "<img src='".@$pic_path."'width='80' height='80'>";
 					}
 					?>
-                 
+
                  </td>
                  </tr>
                  </table>
                  </td>
-                  
+
                 </tr>
                 <tr>
                     <td  width="52"class="style1" valign="top" style="border-bottom:1px #000000; border-right:0px #000000; padding:2px;" align="center"><?php echo $participant_details[$i]['participant_id']; ?></td>
-                    
+
               </tr>
                 <?php
 					$item_details		=	$this->prereport_model->get_participant_item_details($participant_details[$i]['participant_id']);
 					$cnt=count($item_details);
 					$l=1;
-					
+
 					foreach($item_details as $item)
 					{
 						if($l==$cnt)
 							$style="style23";
-						else 
+						else
 							$style="style9";
-							$dat_itme=datetophpmodel($item['start_time']);							
+							$dat_itme=datetophpmodel($item['start_time']);
 							$timer=explode(" ",$item['start_time']);
 				?>
                	<tr>
@@ -275,16 +275,16 @@ for($i = 0; $i < count($participant_details); ){
            <?php }?>
       </td>
       <?php $i++;?>
-         
+
   </tr>
       <tr>
       	<td colspan="3" height="20"></td>
       </tr>
-     
-      
+
+
 <?php
 }
 ?>
   </table>
-  
+
 </page>

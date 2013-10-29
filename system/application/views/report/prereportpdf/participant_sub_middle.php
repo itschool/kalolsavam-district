@@ -84,7 +84,7 @@ if (count($fest_master_details) > 0)
 		$file_path="";
 	}
 }
-	
+
 ?>
 <?php
 for($i = 0; $i < count($participant_details); ){
@@ -106,12 +106,12 @@ for($i = 0; $i < count($participant_details); ){
 					if($file_path!=""){
 				  ?>
 					<td rowspan="2"><img src="<?php echo $file_path?>" height="40" /></td>
-					<?php } 
+					<?php }
 				 else {?>
 					<td width="74" rowspan="2">&nbsp;</td>
 					<?php } ?>
 					<td width="243" class="style56" align="right">Kerala School
-						Kalolsavam 2012 - 2013</td>
+						Kalolsavam 2013 - 2014</td>
 				</tr>
 				<tr>
 

@@ -13,7 +13,7 @@ class Certificate extends Controller {
 		$this->Contents = array();
 		//$this->template->write_view('left_panel', 'menu_left', '');
 	}
-	
+
 	function index()
 	{
 		if($this->Session_Model->check_user_permission(47)==false){
@@ -21,30 +21,30 @@ class Certificate extends Controller {
 			$this->template->load();
 			return;
 		}
-		
-		
+
+
 		$certificate_type_array	=	$this->General_Model->prepare_select_box_data('certificate_type','ct_id,type','','','ct_id');
-		
+
 		$sub_dist_code			=	$this->session->userdata('SUB_DISTRICT');
 		$dist_code				=	$this->session->userdata('DISTRICT');
-		
+
 		$font_array				=	$this->Certificate_model->get_font_array();
 		$font_size_array		=	$this->Certificate_model->get_font_size_array();
 		$line_height_array		=	$this->Certificate_model->get_line_height_array();
-		
+
 		$certificate_template	=	$this->Certificate_model->get_certificate_details($dist_code,$sub_dist_code);
-		
+
 		$this->Contents['certificate_type_array']	=	$certificate_type_array;
 		$this->Contents['font_array']				=	$font_array;
 		$this->Contents['font_size_array']			=	$font_size_array;
 		$this->Contents['line_height_array']		=	$line_height_array;
-		
+
 		$this->Contents['certificate_template']		=	$certificate_template;
 		$this->template->write_view('content', 'certificate/certificate_template', $this->Contents);
 		$this->template->load();
-		
+
 	}
-	
+
 	function save_certificate_template()
 	{
 		if($this->Session_Model->check_user_permission(47)==false){
@@ -55,10 +55,10 @@ class Certificate extends Controller {
 		$sub_dist_code			=	$this->session->userdata('SUB_DISTRICT');
 		$dist_code				=	$this->session->userdata('DISTRICT');
 		$this->Certificate_model->save_certificate_details($dist_code,$sub_dist_code);
-		
+
 		$this->index();
 	}
-	
+
 	function test_certificate()
 	{
 		if($this->Session_Model->check_user_permission(47)==false){
@@ -68,35 +68,35 @@ class Certificate extends Controller {
 		}
 		$sub_dist_code			=	$this->session->userdata('SUB_DISTRICT');
 		$dist_code				=	$this->session->userdata('DISTRICT');
-		
+
 		$certificate_template	=	$this->Certificate_model->get_certificate_details($dist_code,$sub_dist_code);
-		
+
 		$page_style				=	($certificate_template[0]['page_style'] == 'P') ? 'P' : 'L';
 		$line_height			=	($certificate_template[0]['line_height']) ? $certificate_template[0]['line_height'] : '1';
 		$top_margin				=	($certificate_template[0]['top_margin']) ? $certificate_template[0]['top_margin'] : '1';
 		$left_margin			=	($certificate_template[0]['left_margin']) ? $certificate_template[0]['left_margin'] : '1';
 		$right_margin			=	($certificate_template[0]['right_margin']) ? $certificate_template[0]['right_margin'] : '1';
-		
+
 		$label_print			=	($certificate_template[0]['label_print']) ? $certificate_template[0]['label_print'] : 'N';
-		
+
 		$this->load->library('_fpdf/fpdf');
-		
+
 		$this->fpdf->Open();
-		
+
 		/*$this->fpdf->AddPage();
 		$this->fpdf->SetFont('Arial','B',14);
 		$this->fpdf->SetY(30);
 		$this->fpdf->Cell(40,10,'Hello World!');
-		$this->fpdf->Output('certificate.pdf','D');*/  
+		$this->fpdf->Output('certificate.pdf','D');*/
 		$this->fpdf->FPDF($page_style,'mm','A4');
-		
+
 		$this->fpdf->AddPage();
 		$this->fpdf->SetFont('Arial','B',14);
-		
+
 		$this->fpdf->SetMargins($left_margin,$top_margin,$right_margin);
-		
-		
-		
+
+
+
 		if ($certificate_template[0]['name_x'] and $certificate_template[0]['name_y'])
 		{
 			$this->fpdf->SetFont($certificate_template[0]['name_font'],'B',$certificate_template[0]['name_size']);
@@ -109,8 +109,8 @@ class Certificate extends Controller {
 			{
 				$this->fpdf->Write($line_height,'ANU KRISHNAN SYAM DASS SUNDAR DAS CHANDRAN');
 			}
-			
-			
+
+
 		}
 		if ($certificate_template[0]['item_x'] and $certificate_template[0]['item_y'])
 		{
@@ -124,13 +124,13 @@ class Certificate extends Controller {
 			{
 				$this->fpdf->Write($line_height,'Desabhakthiganam');
 			}
-			
+
 		}
 		if ($certificate_template[0]['category_x'] and $certificate_template[0]['category_y'])
 		{
 			$this->fpdf->SetFont($certificate_template[0]['category_font'],'B',$certificate_template[0]['category_size']);
 			$this->fpdf->SetXY($certificate_template[0]['category_x'],$certificate_template[0]['category_y']);
-			
+
 			if ($label_print == 'Y')
 			{
 				$this->fpdf->Write($line_height,'Category : '.'UP General');
@@ -144,7 +144,7 @@ class Certificate extends Controller {
 		{
 			$this->fpdf->SetFont($certificate_template[0]['grade_font'],'B',$certificate_template[0]['grade_size']);
 			$this->fpdf->SetXY($certificate_template[0]['grade_x'],$certificate_template[0]['grade_y']);
-			
+
 			if ($label_print == 'Y')
 			{
 				$this->fpdf->Write($line_height,'Grade : '.'A');
@@ -158,7 +158,7 @@ class Certificate extends Controller {
 		{
 			$this->fpdf->SetFont($certificate_template[0]['class_font'],'B',$certificate_template[0]['class_size']);
 			$this->fpdf->SetXY($certificate_template[0]['class_x'],$certificate_template[0]['class_y']);
-			
+
 			if ($label_print == 'Y')
 			{
 				$this->fpdf->Write($line_height,'Class : '.'5');
@@ -172,7 +172,7 @@ class Certificate extends Controller {
 		{
 			$this->fpdf->SetFont($certificate_template[0]['school_font'],'B',$certificate_template[0]['school_size']);
 			$this->fpdf->SetXY($certificate_template[0]['school_x'],$certificate_template[0]['school_y']);
-			
+
 			if ($label_print == 'Y')
 			{
 				$this->fpdf->Write($line_height,'School : '."St Xavier's Chevoor");
@@ -186,7 +186,7 @@ class Certificate extends Controller {
 		{
 			$this->fpdf->SetFont($certificate_template[0]['sub_dist_font'],'B',$certificate_template[0]['sub_dist_size']);
 			$this->fpdf->SetXY($certificate_template[0]['sub_dist_x'],$certificate_template[0]['sub_dist_y']);
-			
+
 			if ($label_print == 'Y')
 			{
 				$this->fpdf->Write($line_height,'Subdistrict : '.'Cherpu');
@@ -200,7 +200,7 @@ class Certificate extends Controller {
 		{
 			$this->fpdf->SetFont($certificate_template[0]['dist_font'],'B',$certificate_template[0]['dist_size']);
 			$this->fpdf->SetXY($certificate_template[0]['dist_x'],$certificate_template[0]['dist_y']);
-			
+
 			if ($label_print == 'Y')
 			{
 				$this->fpdf->Write($line_height,'District : '.'Thrissur');
@@ -214,17 +214,17 @@ class Certificate extends Controller {
 		{
 			$this->fpdf->SetFont($certificate_template[0]['date_font'],'B',$certificate_template[0]['date_size']);
 			$this->fpdf->SetXY($certificate_template[0]['date_x'],$certificate_template[0]['date_y']);
-			
-			$this->fpdf->Write($line_height,'Date : '.'06 Nov 2009');
+
+			$this->fpdf->Write($line_height,'Date : '.'06 Nov 2013');
 		}
 		if ($certificate_template[0]['place_x'] and $certificate_template[0]['place_y'])
 		{
 			$this->fpdf->SetFont($certificate_template[0]['place_font'],'B',$certificate_template[0]['place_size']);
 			$this->fpdf->SetXY($certificate_template[0]['place_x'],$certificate_template[0]['place_y']);
-			
+
 			$this->fpdf->Write($line_height,'Place : '.'Cherpu');
 		}
-		
+
 		if($page_style	==	'L')
 		{
 		$this->fpdf->Line(5,5,5,200);
@@ -245,7 +245,7 @@ class Certificate extends Controller {
 			}
 		}
 		$this->fpdf->Line(5,200,255,200);
-		
+
 		}//End if($page_style	==	'L')
 		else{
 				$this->fpdf->Line(5,5,5,180);
@@ -266,15 +266,15 @@ class Certificate extends Controller {
 				}
 			}
 			$this->fpdf->Line(5,230,180,230);
-		
+
 		}//End else($page_style	==	'L')
-		
+
 		$this->fpdf->Output('certificate.pdf','D');
 	}
-	
+
 	function test_certificare_withoutgraph()
 	{
-		
+
 		if($this->Session_Model->check_user_permission(47)==false){
 			$this->template->write('error', permission_warning());
 			$this->template->load();
@@ -282,36 +282,36 @@ class Certificate extends Controller {
 		}
 		$sub_dist_code			=	$this->session->userdata('SUB_DISTRICT');
 		$dist_code				=	$this->session->userdata('DISTRICT');
-		
+
 		$certificate_template	=	$this->Certificate_model->get_certificate_details($dist_code,$sub_dist_code);
-		
+
 		$page_style				=	($certificate_template[0]['page_style'] == 'P') ? 'P' : 'L';
 		$line_height			=	($certificate_template[0]['line_height']) ? $certificate_template[0]['line_height'] : '1';
 		$top_margin				=	($certificate_template[0]['top_margin']) ? $certificate_template[0]['top_margin'] : '1';
 		$left_margin			=	($certificate_template[0]['left_margin']) ? $certificate_template[0]['left_margin'] : '1';
 		$right_margin			=	($certificate_template[0]['right_margin']) ? $certificate_template[0]['right_margin'] : '1';
-		
+
 		$label_print			=	($certificate_template[0]['label_print']) ? $certificate_template[0]['label_print'] : 'N';
-		
-		
+
+
 		$this->load->library('_fpdf/fpdf');
-		
+
 		$this->fpdf->Open();
-		
+
 		/*$this->fpdf->AddPage();
 		$this->fpdf->SetFont('Arial','B',14);
 		$this->fpdf->SetY(30);
 		$this->fpdf->Cell(40,10,'Hello World!');
-		$this->fpdf->Output('certificate.pdf','D');*/  
+		$this->fpdf->Output('certificate.pdf','D');*/
 		$this->fpdf->FPDF($page_style,'mm','A4');
-		
+
 		$this->fpdf->AddPage();
 		$this->fpdf->SetFont('Arial','B',14);
-		
+
 		$this->fpdf->SetMargins($left_margin,$top_margin,$right_margin);
-		
-		
-		
+
+
+
 		if ($certificate_template[0]['name_x'] and $certificate_template[0]['name_y'])
 		{
 			$this->fpdf->SetFont($certificate_template[0]['name_font'],'B',$certificate_template[0]['name_size']);
@@ -324,8 +324,8 @@ class Certificate extends Controller {
 			{
 				$this->fpdf->Write($line_height,'ANU KRISHNAN SYAM DASS SUNDAR DAS CHANDRAN');
 			}
-			
-			
+
+
 		}
 		if ($certificate_template[0]['item_x'] and $certificate_template[0]['item_y'])
 		{
@@ -339,13 +339,13 @@ class Certificate extends Controller {
 			{
 				$this->fpdf->Write($line_height,'Desabhakthiganam');
 			}
-			
+
 		}
 		if ($certificate_template[0]['category_x'] and $certificate_template[0]['category_y'])
 		{
 			$this->fpdf->SetFont($certificate_template[0]['category_font'],'B',$certificate_template[0]['category_size']);
 			$this->fpdf->SetXY($certificate_template[0]['category_x'],$certificate_template[0]['category_y']);
-			
+
 			if ($label_print == 'Y')
 			{
 				$this->fpdf->Write($line_height,'Category : '.'UP General');
@@ -359,7 +359,7 @@ class Certificate extends Controller {
 		{
 			$this->fpdf->SetFont($certificate_template[0]['grade_font'],'B',$certificate_template[0]['grade_size']);
 			$this->fpdf->SetXY($certificate_template[0]['grade_x'],$certificate_template[0]['grade_y']);
-			
+
 			if ($label_print == 'Y')
 			{
 				$this->fpdf->Write($line_height,'Grade : '.'A');
@@ -373,7 +373,7 @@ class Certificate extends Controller {
 		{
 			$this->fpdf->SetFont($certificate_template[0]['class_font'],'B',$certificate_template[0]['class_size']);
 			$this->fpdf->SetXY($certificate_template[0]['class_x'],$certificate_template[0]['class_y']);
-			
+
 			if ($label_print == 'Y')
 			{
 				$this->fpdf->Write($line_height,'Class : '.'5');
@@ -387,7 +387,7 @@ class Certificate extends Controller {
 		{
 			$this->fpdf->SetFont($certificate_template[0]['school_font'],'B',$certificate_template[0]['school_size']);
 			$this->fpdf->SetXY($certificate_template[0]['school_x'],$certificate_template[0]['school_y']);
-			
+
 			if ($label_print == 'Y')
 			{
 				$this->fpdf->Write($line_height,'School : '."St Xavier's Chevoor");
@@ -401,7 +401,7 @@ class Certificate extends Controller {
 		{
 			$this->fpdf->SetFont($certificate_template[0]['sub_dist_font'],'B',$certificate_template[0]['sub_dist_size']);
 			$this->fpdf->SetXY($certificate_template[0]['sub_dist_x'],$certificate_template[0]['sub_dist_y']);
-			
+
 			if ($label_print == 'Y')
 			{
 				$this->fpdf->Write($line_height,'Subdistrict : '.'Cherpu');
@@ -425,26 +425,26 @@ class Certificate extends Controller {
 				$this->fpdf->Write($line_height,'Thrissur');
 			}
 		}
-		
+
 		if ($certificate_template[0]['date_x'] and $certificate_template[0]['date_y'])
 		{
 			$this->fpdf->SetFont($certificate_template[0]['date_font'],'B',$certificate_template[0]['date_size']);
 			$this->fpdf->SetXY($certificate_template[0]['date_x'],$certificate_template[0]['date_y']);
-			
-			$this->fpdf->Write($line_height,'Date : '.'06 Nov 2009');
+
+			$this->fpdf->Write($line_height,'Date : '.'06 Nov 2013');
 		}
 		if ($certificate_template[0]['place_x'] and $certificate_template[0]['place_y'])
 		{
 			$this->fpdf->SetFont($certificate_template[0]['place_font'],'B',$certificate_template[0]['place_size']);
 			$this->fpdf->SetXY($certificate_template[0]['place_x'],$certificate_template[0]['place_y']);
-			
+
 			$this->fpdf->Write($line_height,'Place : '.'Cherpu');
 		}
-						
+
 		$this->fpdf->Output('certificate.pdf','D');
-	
+
 	}
-	
+
 	function list_item_wise ()
 	{
 		if($this->Session_Model->check_user_permission(48)==false){
@@ -472,7 +472,7 @@ class Certificate extends Controller {
 		}
 		$this->template->load();
 	}
-	
+
 	function get_certificate_itemwise ()
 	{
 		if($this->Session_Model->check_user_permission(48)==false){
@@ -481,7 +481,7 @@ class Certificate extends Controller {
 			return;
 		}
 		if ('' != $this->input->post('hidItemId'))
-		{   
+		{
 		    $sql=mysql_query("update result_master set is_certificate_printed=1 where item_code=".$this->input->post('hidItemId'));
 			$this->Contents['javascript_code']	= '';
 			$this->Contents['item_type'] =	$this->Certificate_model->is_group_item($this->input->post('hidItemId'));
@@ -516,7 +516,7 @@ class Certificate extends Controller {
 			$dist_code				=	$this->session->userdata('DISTRICT');
 			$certificate_template	=	$this->Certificate_model->get_certificate_details($dist_code,$sub_dist_code);
 			$page_style				=	($certificate_template[0]['page_style'] == 'P') ? 'P' : 'L';
-			
+
 			$this->load->library('_fpdf/fpdf');
 			$this->fpdf->Open();
 			$this->fpdf->FPDF($page_style,'mm','A4');
@@ -540,9 +540,9 @@ class Certificate extends Controller {
 				{
 					$participant_id		=  '';
 				}
-				$participant_array	= $this->Certificate_model->get_participant_details($this->input->post('hidItemId'), 
+				$participant_array	= $this->Certificate_model->get_participant_details($this->input->post('hidItemId'),
 										$this->input->post('captain_id'), $this->input->post('hidItemType'), $participant_id);
-								
+
 				if (is_array($participant_array) && count($participant_array))
 				{
 					foreach ($participant_array as $participant_array)
@@ -552,14 +552,14 @@ class Certificate extends Controller {
 				}
 			}
 			$this->fpdf->Output('certificate.pdf','D');
-			
+
 		}
 		else
 		{
 			redirect('certificate/certificate/list_item_wise');
 		}
 	}
-	
+
 	function create_certificate ($participant_array, $certificate_template)
 	{
 		if($this->Session_Model->check_user_permission(48)==false){
@@ -572,21 +572,21 @@ class Certificate extends Controller {
 		$top_margin				=	($certificate_template[0]['top_margin']) ? $certificate_template[0]['top_margin'] : '1';
 		$left_margin			=	($certificate_template[0]['left_margin']) ? $certificate_template[0]['left_margin'] : '1';
 		$right_margin			=	($certificate_template[0]['right_margin']) ? $certificate_template[0]['right_margin'] : '1';
-		
+
 		$label_print			=	($certificate_template[0]['label_print']) ? $certificate_template[0]['label_print'] : 'N';
 		$Xincrementforlabel		=	30;
 		$Xincrementforlabelitem	=	35;
-		
+
 		$this->fpdf->AddPage();
 		$this->fpdf->SetFont('Arial','B',14);
-		
+
 		$this->fpdf->SetMargins($left_margin,$top_margin,$right_margin);
-		
+
 		if ($certificate_template[0]['name_x'] and $certificate_template[0]['name_y'])
 		{
 			$this->fpdf->SetFont($certificate_template[0]['name_font'],'B',$certificate_template[0]['name_size']);
 			$this->fpdf->SetXY($certificate_template[0]['name_x'],$certificate_template[0]['name_y']);
-			
+
 			if ($label_print == 'Y')
 			{
 				$this->fpdf->Write($line_height,'Name');
@@ -599,15 +599,15 @@ class Certificate extends Controller {
 			{
 				$this->fpdf->Write($line_height,$participant_array['participant_name']);
 			}
-		
+
 		}
 		if ($certificate_template[0]['item_x'] and $certificate_template[0]['item_y'])
 		{
 			$this->fpdf->SetFont($certificate_template[0]['item_font'],'B',$certificate_template[0]['item_size']);
 			$this->fpdf->SetXY($certificate_template[0]['item_x'],$certificate_template[0]['item_y']);
-			
+
 			if ($label_print == 'Y')
-			{				
+			{
 				$this->fpdf->Write($line_height,'Item');
 				$this->fpdf->SetXY($certificate_template[0]['item_x']+$Xincrementforlabel,$certificate_template[0]['item_y']);
 				$this->fpdf->Write($line_height,':');
@@ -623,16 +623,16 @@ class Certificate extends Controller {
 		{
 			$this->fpdf->SetFont($certificate_template[0]['category_font'],'B',$certificate_template[0]['category_size']);
 			$this->fpdf->SetXY($certificate_template[0]['category_x'],$certificate_template[0]['category_y']);
-			
+
 			if ($label_print == 'Y')
 			{
-				
+
 				$this->fpdf->Write($line_height,'Category');
 				$this->fpdf->SetXY($certificate_template[0]['category_x']+$Xincrementforlabel,$certificate_template[0]['category_y']);
 				$this->fpdf->Write($line_height,':');
 				$this->fpdf->SetXY($certificate_template[0]['category_x']+$Xincrementforlabelitem,$certificate_template[0]['category_y']);
 				$this->fpdf->Write($line_height,$participant_array['fest_name']);
-				
+
 			}
 			else
 			{
@@ -643,16 +643,16 @@ class Certificate extends Controller {
 		{
 			$this->fpdf->SetFont($certificate_template[0]['grade_font'],'B',$certificate_template[0]['grade_size']);
 			$this->fpdf->SetXY($certificate_template[0]['grade_x'],$certificate_template[0]['grade_y']);
-			
+
 			if ($label_print == 'Y')
 			{
-				
+
 				$this->fpdf->Write($line_height,'Grade');
 				$this->fpdf->SetXY($certificate_template[0]['grade_x']+$Xincrementforlabel,$certificate_template[0]['grade_y']);
 				$this->fpdf->Write($line_height,':');
 				$this->fpdf->SetXY($certificate_template[0]['grade_x']+$Xincrementforlabelitem,$certificate_template[0]['grade_y']);
 				$this->fpdf->Write($line_height,$participant_array['grade']);
-				
+
 			}
 			else
 			{
@@ -663,16 +663,16 @@ class Certificate extends Controller {
 		{
 			$this->fpdf->SetFont($certificate_template[0]['class_font'],'B',$certificate_template[0]['class_size']);
 			$this->fpdf->SetXY($certificate_template[0]['class_x'],$certificate_template[0]['class_y']);
-			
+
 			if ($label_print == 'Y')
 			{
-				
+
 				$this->fpdf->Write($line_height,'Class');
 				$this->fpdf->SetXY($certificate_template[0]['class_x']+$Xincrementforlabel,$certificate_template[0]['class_y']);
 				$this->fpdf->Write($line_height,':');
 				$this->fpdf->SetXY($certificate_template[0]['class_x']+$Xincrementforlabelitem,$certificate_template[0]['class_y']);
 				$this->fpdf->Write($line_height,$participant_array['class']);
-				
+
 			}
 			else
 			{
@@ -683,10 +683,10 @@ class Certificate extends Controller {
 		{
 			$this->fpdf->SetFont($certificate_template[0]['school_font'],'B',$certificate_template[0]['school_size']);
 			$this->fpdf->SetXY($certificate_template[0]['school_x'],$certificate_template[0]['school_y']);
-			
+
 			if ($label_print == 'Y')
 			{
-				
+
 				$this->fpdf->Write($line_height,'School');
 				$this->fpdf->SetXY($certificate_template[0]['school_x']+$Xincrementforlabel,$certificate_template[0]['school_y']);
 				$this->fpdf->Write($line_height,':');
@@ -704,44 +704,44 @@ class Certificate extends Controller {
 			$this->fpdf->SetXY($certificate_template[0]['sub_dist_x'],$certificate_template[0]['sub_dist_y']);
 			if ($label_print == 'Y')
 			{
-				
+
 				$this->fpdf->Write($line_height,'Subdistrict');
 				$this->fpdf->SetXY($certificate_template[0]['sub_dist_x']+$Xincrementforlabel,$certificate_template[0]['sub_dist_y']);
 				$this->fpdf->Write($line_height,':');
 				$this->fpdf->SetXY($certificate_template[0]['sub_dist_x']+$Xincrementforlabelitem,$certificate_template[0]['sub_dist_y']);
 				$this->fpdf->Write($line_height,$participant_array['sub_district_name']);
-				
+
 			}
 			else
 			{
 				$this->fpdf->Write($line_height, $participant_array['sub_district_name']);
 			}
-			
+
 			//$this->fpdf->Write($line_height,'Subdistrict');
 		}
-		
+
 		if ($certificate_template[0]['photoX'] and $certificate_template[0]['photoY'])
 		{
-			
+
 			@$pic_pathName	=	$participant_array['school_code']."_".$participant_array['admn_no'];
-			
+
 			@$pic_path	=	$this->Photos_model->get_Photo($pic_pathName);
-			
+
 			if($pic_path){
 			$this->fpdf->Image($pic_path,$certificate_template[0]['photoX'],$certificate_template[0]['photoY'],$certificate_template[0]['photoWidth'],$certificate_template[0]['photoHight']);
 			}
-			
+
 			//$this->fpdf->Write($line_height,'Subdistrict');
 		}
-		
+
 		if ($certificate_template[0]['ehs_X'] and $certificate_template[0]['ehs_Y'])
 		{
 			$this->fpdf->SetFont($certificate_template[0]['ehs_font'],'B',$certificate_template[0]['ehs_size']);
 			$this->fpdf->SetXY($certificate_template[0]['ehs_X'],$certificate_template[0]['ehs_Y']);
 		    if($participant_array['grade']=='A' && $participant_array['rank']==1 && $participant_array['item_code'] > 520)
-			{			
+			{
 			   $this->fpdf->Write($line_height, 'Eligible For Higher Level');
-			}							
+			}
 		}
 		/*if ($certificate_template[0]['dist_x'] and $certificate_template[0]['dist_y'])
 		{
@@ -749,16 +749,16 @@ class Certificate extends Controller {
 			$this->fpdf->SetXY($certificate_template[0]['dist_x'],$certificate_template[0]['dist_y']);
 			$this->fpdf->Write($line_height,'District');
 		}*/
-		
+
 		if ($certificate_template[0]['date_x'] and $certificate_template[0]['date_y'])
 		{
 			$this->fpdf->SetFont($certificate_template[0]['date_font'],'B',$certificate_template[0]['date_size']);
 			$this->fpdf->SetXY($certificate_template[0]['date_x'],$certificate_template[0]['date_y']);
-			
+
 			$end_date		=	end($this->General_Model->get_fest_date_array());
 			if ($label_print == 'Y'){
 				//$this->fpdf->Write($line_height,'Date               :  '.$end_date);
-				
+
 				$this->fpdf->Write($line_height,'Date');
 				$this->fpdf->SetXY($certificate_template[0]['date_x']+$Xincrementforlabel,$certificate_template[0]['date_y']);
 				$this->fpdf->Write($line_height,':');
@@ -775,7 +775,7 @@ class Certificate extends Controller {
 			$fest_master_details	=	$this->General_Model->get_fest_master_details();
 			if (count($fest_master_details) > 0)
 			{
-				$venue		=	wordwrap(@$fest_master_details[0]['venue'],30,'<br/>');	
+				$venue		=	wordwrap(@$fest_master_details[0]['venue'],30,'<br/>');
 			}
 			if ($label_print == 'Y'){
 				//$this->fpdf->Write($line_height,'Place             :  '.$venue);
@@ -784,14 +784,14 @@ class Certificate extends Controller {
 				$this->fpdf->Write($line_height,':');
 				$this->fpdf->SetXY($certificate_template[0]['place_x']+$Xincrementforlabelitem,$certificate_template[0]['place_y']);
 				$this->fpdf->Write($line_height,$venue);
-				
+
 			}
 			else
 				$this->fpdf->Write($line_height,$venue);
 		}
-		
+
 	}
-	
+
 	function list_school_wise ()
 	{
 		if($this->Session_Model->check_user_permission(48)==false){
@@ -804,7 +804,7 @@ class Certificate extends Controller {
 		$this->template->write_view('content','certificate/certificate_details_school_wise',$this->Contents);
 		$this->template->load();
 	}
-	
+
 	function get_certificate_school_wise ()
 	{
 		if($this->Session_Model->check_user_permission(48)==false){
@@ -831,7 +831,7 @@ class Certificate extends Controller {
 			redirect('certificate/certificate/list_school_wise');
 		}
 	}
-	
+
 	function get_certificate_pdf_school_wise ()
 	{
 		if($this->Session_Model->check_user_permission(48)==false){
@@ -845,18 +845,18 @@ class Certificate extends Controller {
 			$dist_code				=	$this->session->userdata('DISTRICT');
 			$certificate_template	=	$this->Certificate_model->get_certificate_details($dist_code,$sub_dist_code);
 			$page_style				=	($certificate_template[0]['page_style'] == 'P') ? 'P' : 'L';
-			
+
 			$this->load->library('_fpdf/fpdf');
 			$this->fpdf->Open();
 			$this->fpdf->FPDF($page_style,'mm','A4');
-		
+
 			$school_code		= $this->input->post('hidSchoolCode');
 			$festival			= $this->input->post('cmbFestType');
 			$item_code			= $this->input->post('item_code');
 			$captain_id			= $this->input->post('captain_id');
 			$participant_id		= $this->input->post('participant_id');
 			$participant_array	= $this->Certificate_model->get_school_participant_details($school_code, $festival, $item_code, $captain_id, $participant_id);
-			
+
 			if (is_array($participant_array) && count($participant_array))
 			{
 				foreach ($participant_array as $participant_array)
@@ -866,14 +866,14 @@ class Certificate extends Controller {
 			}
 
 			$this->fpdf->Output('certificate.pdf','D');
-			
+
 		}
 		else
 		{
 			redirect('certificate/certificate/list_item_wise');
 		}
 	}
-	
+
 	function list_reg_no_wise ()
 	{
 		if($this->Session_Model->check_user_permission(48)==false){
@@ -885,7 +885,7 @@ class Certificate extends Controller {
 		$this->template->write_view('content','certificate/participant_certificate_details',$this->Contents);
 		$this->template->load();
 	}
-	
+
 	function get_certificate_pdf_participant_wise ()
 	{
 		if($this->Session_Model->check_user_permission(48)==false){
@@ -899,17 +899,17 @@ class Certificate extends Controller {
 			$dist_code				=	$this->session->userdata('DISTRICT');
 			$certificate_template	=	$this->Certificate_model->get_certificate_details($dist_code,$sub_dist_code);
 			$page_style				=	($certificate_template[0]['page_style'] == 'P') ? 'P' : 'L';
-			
+
 			$this->load->library('_fpdf/fpdf');
 			$this->fpdf->Open();
 			$this->fpdf->FPDF($page_style,'mm','A4');
-		
+
 			$festival			= '';
 			$school_code		= '';
 			$captain_id			= '';
 			$item_code			= $this->input->post('item_code');
 			$participant_id		= $this->input->post('txtParticipantId');
-		
+
 			$participant_array	= $this->Certificate_model->get_school_participant_details($school_code, $festival, $item_code, $captain_id, $participant_id);
 			if (is_array($participant_array) && count($participant_array))
 			{
@@ -920,7 +920,7 @@ class Certificate extends Controller {
 			}
 
 			$this->fpdf->Output('certificate.pdf','D');
-			
+
 		}
 		else
 		{

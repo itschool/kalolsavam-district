@@ -71,11 +71,11 @@ if (count($fest_master_details) > 0)
 		$file_path		=	base_url(false).'uploads/district/thumb_'.$logo;
 	}
 	else {
-	
+
 		$file_path="";
 	}
 }
-					
+
 ?>
 
 
@@ -88,18 +88,18 @@ for($i = 0; $i < count($participant_details); ){
 ?>
 	<tr>
     	<td valign="top">
-        	<?php if (@$participant_details[$i]['participant_id']){?>       	  
+        	<?php if (@$participant_details[$i]['participant_id']){?>
             <table border="1" width="275" >
               <tr>
                 <?php
               	  if($file_path!=""){
 				  ?>
                 <td rowspan="2"><img src="<?php echo $file_path?>" height="40"  /></td>
-                <?php } 
+                <?php }
 				 else {?>
                 <td rowspan="2">&nbsp;</td>
                 <?php } ?>
-                <td  class="style56" >Kerala School Kalolsavam 2012-13</td>
+                <td  class="style56" >Kerala School Kalolsavam 2013 - 2014</td>
               </tr>
               <tr>
                 <td align="right" class="stylehy"><?php echo $title.'<br> '.$venue; ?><br /></td>
@@ -115,7 +115,7 @@ for($i = 0; $i < count($participant_details); ){
                  &nbsp;
                  <?php  echo wordwrap($participant_details[$i]['school_code'].'  '.@$participant_details[$i]['school_name'],30,'<br/>'); ?>                 <br />
                  &nbsp;
-				 <?php echo 'Class  :'.$participant_details[$i]['class']."<br>&nbsp;".$participant_details[$i]['sub_district_name']." - Sub-District"; ?> 
+				 <?php echo 'Class  :'.$participant_details[$i]['class']."<br>&nbsp;".$participant_details[$i]['sub_district_name']." - Sub-District"; ?>
                  </td>
               </tr>
               <tr>
@@ -129,11 +129,11 @@ for($i = 0; $i < count($participant_details); ){
 					{
 						if($l==$cnt)
 							$style="style23";
-						else 
+						else
 							$style="style9";
 							$dat_itme=datetophpmodel($item['start_time']);
 							$timer=explode(" ",$item['start_time']);
-						
+
 				?>
               <tr>
                 <td colspan="2"  class="<?php echo $style; ?>"><table width="200">
@@ -158,36 +158,36 @@ for($i = 0; $i < count($participant_details); ){
                 <?php
               	  if($file_path!=""){
 				  ?>
-                  
+
                  <td rowspan="2"> <img src="<?php echo $file_path?>" height="40"></td>
-                 <?php 
+                 <?php
 				 }
 				 else {
 				 ?>
                 <td rowspan="2">&nbsp;</td>
-                 
+
                  <?php
                  }
                  ?>
-                    <td class="style56"  >Kerala School Kalolsavam 2012-13</td>
+                    <td class="style56"  >Kerala School Kalolsavam 2013 - 2014</td>
                 </tr>
                 <tr>
-                   
+
                     <td align="right" class="stylehy"><?php echo $title.'<br> '.$venue; ?><br></td>
                 </tr>
-            
+
                 <tr bgcolor="#CCCCCC">
                     <td bgcolor="#E5E5E5" colspan="2" align="center" class="style2" style="border-bottom:1px #666666;border-top:1px #666666; border-right:0px #666666; padding:2px;">Participant's Card</td>
                 </tr>
-                
+
                 <tr>
                     <td align="center">Reg. No</td>
-                    <td rowspan="2" style="border-bottom:1px #666666; border-left:1.5px #666666; padding:2px;"><span class="style2">							                    &nbsp;				
+                    <td rowspan="2" style="border-bottom:1px #666666; border-left:1.5px #666666; padding:2px;"><span class="style2">							                    &nbsp;
 					<?php echo wordwrap($participant_details[$i]['participant_name'],30,'<br/>'); ?></span><br>
                     &nbsp;
                     <?php  echo wordwrap($participant_details[$i]['school_code'].'  '.@$participant_details[$i]['school_name'],30,'<br/>'); ?>.
                     <br />
-                    &nbsp;                  
+                    &nbsp;
 					<?php echo 'Class  :'.$participant_details[$i]['class']."<br>&nbsp;".$participant_details[$i]['sub_district_name']." - Sub-District"; ?>
                     </td>
                 </tr>
@@ -198,12 +198,12 @@ for($i = 0; $i < count($participant_details); ){
 					$item_details		=	$this->prereport_model->get_participant_item_details($participant_details[$i]['participant_id']);
 					$cnt=count($item_details);
 					$l=1;
-					
+
 					foreach($item_details as $item)
 					{
 						if($l==$cnt)
 							$style="style23";
-						else 
+						else
 							$style="style9";
 							$dat_itme=datetophpmodel($item['start_time']);
 							$timer=explode(" ",$item['start_time']);
@@ -224,7 +224,7 @@ for($i = 0; $i < count($participant_details); ){
             </table>
             <?php }?>
          </td><td width="12"></td>
-         <?php $i++;?>         
+         <?php $i++;?>
          <td valign="top">
          	<?php if (@$participant_details[$i]['participant_id']){?>
         	<table border="1" width="250" >
@@ -233,7 +233,7 @@ for($i = 0; $i < count($participant_details); ){
               	  if($file_path!=""){
 				  ?>
                   <td rowspan="2"> <img src="<?php echo $file_path?>" height="40"></td>
-                  <?php 
+                  <?php
 				  }
 				  else{
 				  ?>
@@ -241,13 +241,13 @@ for($i = 0; $i < count($participant_details); ){
                  <?php
 				 }
 				 ?>
-                    <td class="style56">Kerala School Kalolsavam 2012-13</td>
+                    <td class="style56">Kerala School Kalolsavam 2013 - 2014</td>
                 </tr>
                 <tr>
-                  
+
                     <td align="right" class="stylehy"><?php echo $title.'<br> '.$venue; ?><br></td>
                 </tr>
-            
+
                 <tr bgcolor="#CCCCCC">
                     <td bgcolor="#E5E5E5" colspan="2" align="center" class="style2" style="border-bottom:1px #666666;border-top:1px #666666; border-right:0px #666666; padding:2px;">Participant's Card</td>
                 </tr>
@@ -270,12 +270,12 @@ for($i = 0; $i < count($participant_details); ){
 					$item_details		=	$this->prereport_model->get_participant_item_details($participant_details[$i]['participant_id']);
 						$cnt=count($item_details);
 						$l=1;
-					
+
 					foreach($item_details as $item)
 					{
 						if($l==$cnt)
 							$style="style23";
-						else 
+						else
 							$style="style9";
 							$dat_itme=datetophpmodel($item['start_time']);
 							$timer=explode(" ",$item['start_time']);
@@ -289,7 +289,7 @@ for($i = 0; $i < count($participant_details); ){
                     </tr>
                 </table>                    </td>
                 </tr>
-                
+
                 <?php
 				$l++;
 					}
@@ -298,15 +298,15 @@ for($i = 0; $i < count($participant_details); ){
             <?php }?>         </td>
          <?php $i++;?>
       </tr>
-      
+
       <tr>
       <td colspan="5" height="30">&nbsp;</td>
       </tr>
-      
+
       <?php
 }
 ?>
   </table>
-  
+
 </page>
 

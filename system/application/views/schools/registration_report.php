@@ -5,7 +5,7 @@
 				<!--<td style="text-align: left; width: 50%">
 					<img src="<?php //echo image_url().'logo.jpg'?>">
 				</td>-->
-				<td style="width: 100%" align="center"><strong>Kerala School Kalolsavam 2012 - 2013</strong></td>
+				<td style="width: 100%" align="center"><strong>Kerala School Kalolsavam 2013 - 2014</strong></td>
 			</tr>
             <tr>
 				<td style="width: 100%" align="center">
@@ -19,7 +19,7 @@
 	</page_header>
 	<page_footer>
 		<table width="80%" cellpadding="5" cellspacing="0" border="0" align="left">
-    		
+
 		<tr>
         	<td align="center" width="700" colspan="3">
 			   	Certified that above details has been verified and found correct
@@ -41,7 +41,7 @@
             </td>
         </tr>
     </table>
-	
+
 		<table style="width: 100%;">
 			<tr>
 				<td style="width: 100%"><hr/></td>
@@ -66,12 +66,12 @@
         <tr>
             <td align="left"  class="table_row_first">School Type : </td>
             <td align="left" colspan="3" class="table_row_first">
-            <?php 
-            if(@$school_details[0]['school_type'] == 'G') 
+            <?php
+            if(@$school_details[0]['school_type'] == 'G')
                 $type	=	'Government';
-            else if(@$school_details[0]['school_type'] == 'A') 
+            else if(@$school_details[0]['school_type'] == 'A')
                  $type	= 	'Aided';
-            else if(@$school_details[0]['school_type'] == 'U') 
+            else if(@$school_details[0]['school_type'] == 'U')
                 $type	= 	'Unaided' ;
             else
                 $type	= '';
@@ -97,7 +97,7 @@
         <tr>
             <td align="left" class="table_row_first" valign="top">Team Managers : </td>
             <td align="left" colspan="3" class="table_row_first"><div id="teachersRow">
-                <?php 
+                <?php
                   if(@$school_details[0]['teachers'] != ''){
                        $teachers	=	explode("#@#", $school_details[0]['teachers']);
 						echo '<table cellpadding="2" cellspacing="2" border="0">';
@@ -123,14 +123,14 @@
                 HSS <?php echo @$school_details[0]['strength_hss'];?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 VHSE <?php echo @$school_details[0]['strength_vhss'];?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 Total <?php echo @$school_details[0]['total_strength'];?>
-                        
+
             </td>
         </tr>
-       
+
     </table>
-    
-    
-    
+
+
+
     <table width="100%" border="1" cellspacing="0" cellpadding="4" align="center" class="heading_tab" style="margin-top:15px;">
         <tr>
             <th align="center" width="30" style="border-right:1px #000000; padding:2px;">Sl.No</th>
@@ -158,14 +158,14 @@
                         if ($cnt_item == 6)
 						{
 							echo '<br>';
-						} 
+						}
 						echo @$items.'&nbsp;&nbsp;';
-						 
+
                     	$cnt_item++;
 					}
                     ?>
                     </td>
-                </tr>	
+                </tr>
                 <?php
             }
         ?>
@@ -208,5 +208,5 @@
             <td align="left"  style="padding:2px;"><?php echo $fees_details['vhss_fee']['afliation'] + $fees_details['vhss_fee']['participant']?></td>
 		</tr>
     </table>
-	
+
 </page>

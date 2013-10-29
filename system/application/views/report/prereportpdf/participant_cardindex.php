@@ -65,9 +65,9 @@ if ($this->session->userdata('SUB_DISTRICT'))
 					for($j=0;$j<count($partarray); $j++){
 					//while($j<count($partcard)){
 					//$j++;
-					
+
 			?>
-		
+
 		<page backtop="10mm" backbottom="10mm ">
 			<page_header>
 				<table style="width: 100%;">
@@ -76,7 +76,7 @@ if ($this->session->userdata('SUB_DISTRICT'))
 					</tr>
 				</table>
 			</page_header>
-            
+
 <table align="center" width="100%" border="0"><tr><td valign="top">
 <?php
 $prev_participant="";
@@ -92,7 +92,7 @@ $dat_itme=datetophpmodel($partcard[$k]['datee']);
 
 
 <table align="left" width="50%" border="1"><tr>
-  <td class="style56" colspan="2" >Kerala School Kalolsavam 2012 - 13</td></tr>
+  <td class="style56" colspan="2" >Kerala School Kalolsavam 2013 - 2014</td></tr>
      <tr>
     	<td height="40">
         	<?php if ($file_path){?>
@@ -108,7 +108,7 @@ $dat_itme=datetophpmodel($partcard[$k]['datee']);
     <tr>
     	<td colspan="2">&nbsp;</td>
     </tr>
-    
+
     <tr>
     	<td>Reg. No</td><td>&nbsp;</td>
     </tr>
@@ -120,11 +120,11 @@ $dat_itme=datetophpmodel($partcard[$k]['datee']);
     </tr>
     <?php
     }
-    
-    
+
+
     ?>
-    
-    
+
+
     <tr>
         <td colspan="2" class="style9" valign="top"><?php echo $partcard[$k]['item_code'].'-'.$partcard[$k]['item_name']; ?></td>
     </tr>
@@ -137,8 +137,8 @@ $dat_itme=datetophpmodel($partcard[$k]['datee']);
     }
     }
     $j++;
-    
-    
+
+
     ?>
 
 
@@ -158,11 +158,11 @@ if($partarray[$j]==$partcard[$k]['participant_id']){
 if($prev_participant!=$partcard[$k]['participant_id']){
 $prev_participant=$partcard[$k]['participant_id'];
 $dat_itme=datetophpmodel($partcard[$k]['datee']);
-*/	
+*/
 ?>
 
 <table align="left" width="50%" border="1"><tr>
-  <td class="style56" colspan="2" >Kerala School Kalolsavam 2012 - 13</td></tr>
+  <td class="style56" colspan="2" >Kerala School Kalolsavam 2013 - 2014</td></tr>
 <tr><td> <img src="<?php echo $file_path?>" height="40"></td>
 <td align="center"><?php echo $title.'<br> '.$venue; ?><br></td></tr>
 
@@ -209,7 +209,7 @@ $j++;
 
 
 <table align="left" width="50%" border="1"><tr>
-  <td class="style56" colspan="2" >Kerala School Kalolsavam 2012 - 13</td></tr>
+  <td class="style56" colspan="2" >Kerala School Kalolsavam 2013 - 2014</td></tr>
  	<tr>
     	<td height="40">
         	<?php if ($file_path){?>
@@ -254,15 +254,15 @@ $j++;
 
 
 </table></td></tr></table></page>
-        
+
         <?php
-		
+
 		}
-		
+
 		?>
-        
-        
-        
-        
-       
-       
+
+
+
+
+
+
