@@ -8,3 +8,7 @@ photos/*
 Session.vim
 .netrwhist
 *~
+
+## vagrant
+.vagrant
+Vagrantfile
