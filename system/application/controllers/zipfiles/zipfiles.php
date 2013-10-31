@@ -12,23 +12,24 @@ class Zipfiles extends Controller {
 		$this->load->library('zip');
 		$this->Contents = array();
 	}
-	
+
 	function index()
 	{
-		 $this->zip_selected_photos();				
+		 $this->zip_selected_photos();
 	}
-	
+
 	function zip_selected_photos(){
-		
-		if($this->session->userdata('USER_TYPE')==2){
+
+        if($this->session->userdata('USER_TYPE')==2){
+
 			$dist_code		=	$this->session->userdata('DISTRICT');
 			$dist_name		=	get_dist_name($this->session->userdata('DISTRICT'));
 			$photoDirectory	=	$dist_name.'Photos';
-			$directoryToZip			=	'uploads/photos/'; // This will zip all the file(s) in this present working directory
-			
-			$outputDir				=	'uploads/photos/';; //Replace "/" with the name of the desired output directory.
-			$zipName				=	$photoDirectory.".zip";	
-				
+			$directoryToZip			=	'photos/'; // This will zip all the file(s) in this present working directory
+
+			$outputDir				=	'uploads/'; //Replace "/" with the name of the desired output directory.
+			$zipName				=	$photoDirectory.".zip";
+
 			//Code toZip a directory and all its files/subdirectories
 			$this->zip->zipDirectory($directoryToZip,$outputDir);
 			$fd=fopen($zipName, "wb");
@@ -36,7 +37,6 @@ class Zipfiles extends Controller {
 			fclose($fd);
 			$this->zip->forceDownload($zipName);
 			@unlink($zipName);
-									
 		}
 		$this->template->load();
 	}

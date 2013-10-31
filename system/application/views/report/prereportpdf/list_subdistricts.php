@@ -1,5 +1,4 @@
 <style type="text/css">
-<!--
 .style1 {
 	font-size: 14px;
 	font-weight: bold;
@@ -24,11 +23,7 @@
 	font-size: 12px;
 	color:#000000;
 	}
--->
 </style>
-<?php
-
-?>   
 <page backtop="30mm" backbottom="20mm ">
 		<page_header>
     	<?php
@@ -47,9 +42,9 @@
 	<?php
 		$this->load->view('report/report_footer');
 	?>
-</page_footer>       
+</page_footer>
 
-			
+
 
 	    <table width="100%" border="0" cellspacing="0" cellpadding="4" align="center" class="heading_tab" style="margin-top:15px;">
           <tr >
@@ -62,12 +57,12 @@
 		  $prev='';
 		foreach($sub_list AS $data)
 		{
-		 
+
 		 if($prev!=$data['sub_district_code'])
 		 {
 		 $count++;
 		 $prev=$data['sub_district_code']
-      
+
                 ?>
           <tr>
             <td align="center" class="ety"  ><?php echo $count;?></td>
@@ -79,8 +74,8 @@
 			}
         ?>
         </table>
-    
+
  </page>
-	
-    
-    
+
+
+

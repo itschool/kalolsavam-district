@@ -15,7 +15,7 @@
 //<![CDATA[
 	var path 		= '<?php echo base_url();?>';
 	var docpath		= '<?php echo base_url(false)."student"?>';
-	var photo_path	= '<?php echo base_url(false)."uploads/photos"?>'
+	var photo_path	= '<?php echo base_url(false)."photos/"?>'
 	var image_path 	= '<?php echo image_url();?>';
 //]]>
 </script>

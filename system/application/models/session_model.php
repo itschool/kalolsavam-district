@@ -25,11 +25,11 @@ class Session_Model extends Model{
 		}else if (!is_define_kalolsavam ($this->session->userdata('DISTRICT')) and $this->session->userdata('USER_GROUP')!='W'){
 			header ( "Location: ". base_url(). 'admin/kalolsavam/' );
 		}else{
-			return true; 
+			return true;
 		}
 		return false;
 	}
-	
+
 	function check_user_permission($fun_id){
 		if($this->session->userdata('USER_GROUP')=='W'){
 			return true;
@@ -40,8 +40,8 @@ class Session_Model extends Model{
 			$functionalities	=	explode(',', $fun_id);
 			foreach($functionalities AS $value)
 				$where	.=	"rf_id = '".$value."' OR ";
-			$where	=	substr($where,0,strlen($where)-3).")";	
-			$this->db->where($where);	
+			$where	=	substr($where,0,strlen($where)-3).")";
+			$this->db->where($where);
 			$query = $this->db->get('user_rights');
 			if($query->num_rows() > 0){
 				return true;
@@ -51,9 +51,4 @@ class Session_Model extends Model{
 		}
 		return false;
 	}
-	
-	
-	
-	
 }
-?>
