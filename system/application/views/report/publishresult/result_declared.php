@@ -57,7 +57,7 @@ color:#0033FF;
    		 <td  colspan="9" align="left" height="25" class="style2">&nbsp;&nbsp;<?php echo $value['item_code'].' - '.$value['item_name']; ?></td>
   </tr>
      <tr bgcolor="">
-       <td align="center" class="style8">&nbsp;</td> 
+       <td align="center" class="style8">&nbsp;</td>
              <td align="center" height="25" class="style8">Reg. No</td>
              <td align="center" height="25" class="style8">Code No.</td>
              <td align="center" height="25" class="style8">Name</td>
@@ -66,8 +66,8 @@ color:#0033FF;
              <td align="center" height="25" class="style8">Grade</td>
              <td align="center" height="25" class="style8">Point</td>
       </tr>
- 		 <?php  $bg=0; } 
-         
+ 		 <?php  $bg=0; }
+
        		  if($bg==0){
 						$bgcolor="#D8D8D8";
 						$bg=1;
@@ -76,30 +76,30 @@ color:#0033FF;
 						$bgcolor="#EFEFEF";
 						$bg=0;
 					}
-					
+
 					 @$pic_path	=	image_url()."/img_user_nophoto.jpg";
 		?>
-					
+
  	 <tr bgcolor="<?php echo $bgcolor; ?> ">
  	   <td align="center" class="stylelp">
-	   <?php  
-	       
+	   <?php
+
 		   $reg		=	 $value['admn_no'];
 	       if(@$Photo['pic'][$reg])
 			{
 			   @$pic_path	=	@$Photo['pic'][$reg];
-			   echo "<img src='".@$pic_path."'width='80' height='80'>";				 
+			   echo "<img src='".base_url(false).@$pic_path."'width='80' height='80'>";
 			}
 			else
 			{
 				//$document_root 	=	image_url(false)."photos";
 				@$pic_path	=	image_url()."/img_user_nophoto.jpg";
-				echo "<img src='".@$pic_path."'width='80' height='80'>";								
+				echo "<img src='".@$pic_path."'width='80' height='80'>";
 			}
-	       //echo "<img src='".@$pic_path."'width='80' height='80'>" 
-		   
+	       //echo "<img src='".@$pic_path."'width='80' height='80'>"
+
 		?>
-       
+
        </td>
              <td align="center" height="25" class="stylelp"><?php echo $value['participant_id']; ?></td>
              <td align="center" height="25" class="stylelp"><?php echo $value['code_no']; ?></td>
@@ -111,9 +111,9 @@ color:#0033FF;
   	</tr>
 				<?php
                  }
-             } 
+             }
                 ?>
-  
+
     </table>
     <?php }
 		else {

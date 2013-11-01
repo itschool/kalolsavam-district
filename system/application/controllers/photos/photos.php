@@ -169,8 +169,8 @@ class Photos extends Controller {
                     $config1['source_image'] 	= $finfo['full_path'];
                     $config1['create_thumb']	= false;
                     $config1['maintain_ratio'] = TRUE;
-                    $config1['width'] = 150;
-                    $config1['height'] = 150;
+                    $config1['width'] = 100;
+                    $config1['height'] = 100;
                     $this->image_lib->initialize($config1);
 
                     if ($this->image_lib->resize())

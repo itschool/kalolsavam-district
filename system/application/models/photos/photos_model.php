@@ -46,7 +46,7 @@ class Photos_Model extends Model{
 		{
 			if (file_exists($dirname.'/'.$name.'.'.$ext))
             {
-				return base_url(false).$dirname.$name.'.'.$ext;
+				return $dirname.$name.'.'.$ext;
 			}
         }
     }
