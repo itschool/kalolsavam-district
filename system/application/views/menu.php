@@ -37,7 +37,8 @@
           <?php
 		  if($this->session->userdata('USER_GROUP') == 'A'){?>
          	 <li><a href="<?php echo base_url();?>user/user_registration">User Registration</a></li>
-             <li><a href="<?php echo base_url();?>schools/registration/">SubDistrict Details</a></li>
+             <li><a href="<?php echo base_url();?>schools/registration/">School Entry</a></li>
+             <li><a href="<?php echo base_url();?>welcome/sub_district_details/">Reset Schools</a></li>
           <?php }?>
           
                  

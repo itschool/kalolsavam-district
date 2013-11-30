@@ -81,7 +81,7 @@
     </table>
     	<table align="center" width="100%" border="0">
         	<tr>
-                <td class="style2" align="left" width="150">Stage No : <?php echo $fees_details[$j]['stage_name'].' - '.$fees_details[0]['stage_desc']; ?></td>
+                <td class="style2" align="left" width="150">Stage No : <?php echo $fees_details[$j]['stage_name'].' - '.$fees_details[$j]['stage_desc']; ?></td>
                 <td class="style2" align="left" width="150">Date : <?php echo datetophpmodel($fees_details[$j]['start_time']); ?></td>
                 <td align="left" class="style2" width="150">Max Time : <?php echo $fees_details[$j]['item_time'].'  '.$timetype; ?></td>
             </tr>
