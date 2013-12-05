@@ -582,7 +582,7 @@ function fncUpdateParticipant(adno) {
 	
 	
 	$('hidADNO').value = adno;
-	$('formParticipant').action = path+'schools/special_order_entry/update_participant_detials';
+	$('formParticipant').action = path+'schools/registration/update_participant_detials';
 	$('formParticipant').submit();
 }
 function fnschgpwdAdd(){
