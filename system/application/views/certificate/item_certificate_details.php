@@ -45,7 +45,7 @@ echo blue_box_top();
 			</td>
 			<td align="center" class="table_row_first" ><?php echo $itemtype; ?></td>
 			<!-- <td align="center" class="table_row_first"><?php //echo $single[$j]['stage_name']; ?></td> -->
-			<td align="center" class="table_row_first"><?php echo $itempart[$j]['cpt']; ?></td>
+			<td align="center" class="table_row_first"><?php echo $itempart[$j]['cpt'] = $this->General_Model->get_record_count('participant_item_details','is_captain="Y" AND item_code='.$itempart[$j]['item_code'],'participant_id'); ?></td>
 			<td align="center" class="table_row_first"><?php echo $itempart[$j]['participated_no']; ?></td>
 			<td align="center" class="table_row_first"><?php echo $itempart[$j]['cpt']-$itempart[$j]['participated_no']; ?></td>
 			<td align="center" class="table_row_first"><?php echo $itempart[$j]['a_grade'];?></td>
