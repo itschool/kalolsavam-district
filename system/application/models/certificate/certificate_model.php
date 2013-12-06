@@ -203,10 +203,9 @@ class Certificate_Model extends Model{
 		$this->db->join('result_master AS rs','rs.item_code = p.item_code');
 		$this->db->join('item_master AS i','i.item_code = p.item_code');
 		$this->db->join('festival_master AS f','f.fest_id = i.fest_id');
-		//$this->db->where('rs.is_certificate_printed',0);
 		if ('' == $school_code) $this->db->where('i.fest_id',$festtype);
 		$this->db->where('p.is_captain','Y');
-		//$this->db->where('i.item_type','G');
+		$this->db->where("p.item_type != 'P'");
 		$this->db->group_by('p.item_code');
 		$this->db->having("is_confirmed = 'Yes'");
 		$this->db->order_by('p.item_code');		
@@ -241,10 +240,7 @@ class Certificate_Model extends Model{
 		$this->db->join('festival_master AS f','f.fest_id = i.fest_id');
 		$this->db->where('i.fest_id', $festtype);
 		$this->db->where('i.item_type', 'S');
-		//$this->db->where('is_confirmed', "Yes");
-		/*$this->db->where('(SELECT count(rm1.item_code) FROM result_master rm1 WHERE rm1.item_code=p.item_code ) > 0', NULL, FALSE); 
-		$this->db->where('(SELECT count(rm1.item_code) FROM result_master rm1 
-											WHERE rm1.item_code=p.item_code AND rm1.is_finish ="Y") > 0', NULL, FALSE); */
+		$this->db->where('p.is_captain','Y');
 		$this->db->group_by('p.item_code');
 		$this->db->having("is_confirmed = 'Yes'");
 		$this->db->order_by('p.item_code');

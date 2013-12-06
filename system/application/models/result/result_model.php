@@ -876,6 +876,7 @@ class Result_Model extends Model{
 		//$this->db->join('stage_master AS sm','sm.stage_id = s.stage_id','LEFT');
 		$this->db->where('i.fest_id',$festtype);
 		$this->db->where('i.item_type','S');
+		$this->db->where('p.is_captain','Y');
 		$this->db->group_by('p.item_code');
 		$this->db->order_by('p.item_code');
 		$getdet		=	$this->db->get();
