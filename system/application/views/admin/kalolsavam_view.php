@@ -1,7 +1,7 @@
 <div align="center" class="heading_gray">
 	<h3>Kalolsavam Details</h3>
 </div>
-<?php 
+<?php
 if (@$add_edit_kalolsavam != 'no'){
 	echo '<br/>';
 	echo form_open_multipart('admin/kalolsavam/add_kalolsavam', array('id' => 'formKalolsavam'));
@@ -59,7 +59,7 @@ if (@$add_edit_kalolsavam != 'no'){
 	  </tr>
 	  <tr>
 		<td align="center" colspan="2">
-			<?php echo (count(@$selected_kalolsavam) > 0 ) ? form_button('update_kalolsavam', 'Update', 
+			<?php echo (count(@$selected_kalolsavam) > 0 ) ? form_button('update_kalolsavam', 'Update',
 					'id="update_kalolsavam" onClick="javascript:fncUpdateKalolsavam(\'state\',\''.$selected_kalolsavam[0]['kalolsavam_id'].'\');return false;"').'&nbsp;&nbsp;'.
 					form_button('Cancel', 'Cancel', 'onClick="javascript:fncCancelKalolsavam();return false;"'): form_button('save_kalolsavam', 'Save', 'id="save_kalolsavam" onClick="javascript:fncSaveKalolsavam();"');?>
 		</td>
@@ -87,7 +87,7 @@ echo blue_box_top();
 	<th width="35%">Venue</th>
 	<th width="10%">Edit</th>
   </tr>
-  <?php 
+  <?php
   $count = 0;
   foreach($kalolsavam_details as $kalolsavam){
   	$count++;
